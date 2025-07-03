@@ -1,0 +1,62 @@
+BoyerMoore
+El algoritmo toma el texto en el que va a buscar y el patrón a encontrar.
+Compara letra a letra desde derecha a izquierda empezando en el índice equivalente al largo del patrón 
+y es capaz de encontrarse con dos situaciones en el caso de encontrar un error:
+
+Caso 1: El mal carácter se encuentra dentro del patrón.
+
+Si al comparar las letras se rompe el patrón, pero la letra errónea se encuentra en este último:
+
+Texto:	GCTTCTGCTAC...
+Patrón:	GCTAC
+
+(Error con T = A)
+Como la letra T se encuentra en el índice 2 del patrón, se puede usar la letra como "pivote", en esta situación la comparación con el patrón se mueve
+hasta el punto donde la T del patrón coincida con la T de la palabra, para forzar que la comparación anterior sea cierta
+
+Texto:	GCTTCTGCTAC...
+Patrón:	 GCTAC 
+
+T del texto no coincide con C del patrón, se mueve el patrón para que la T del texto coincida con la última T del patrón
+
+Texto:	GCTTCTGCTAC...
+Patrón:	   GCTAC 
+
+G del texto no coincide con A del patrón, se mueve el patrón para que la G del texto coincida con la última G del patrón
+
+Texto:	GCTTCTGCTAC...
+Patrón:	      GCTAC 
+
+Coincidencia total
+
+Caso 2: El mal carácter no se encuentra dentro del patrón
+
+Texto:	GCTZCTGCTAC...
+Patrón:	GCTAC
+
+(Error con A = Z)
+La letra Z no es un carácter perteneciente al patrón, por lo que no hay un punto de referencia para hacer un desplazamiento y se puede concluir que
+el salto a realizar equivale al largo del patrón 
+
+Texto:	GCTZCTGCTAC...
+Patrón:	    GCTAC
+
+* Cuando se llega a una coincidencia total, el algoritmo revisa el siguiente carácter, si este no existe en el patron, se hace un desplazamiento hasta saltarlo
+
+Texto:	GCTTCTGCTACXGTAGCT
+Patrón:	      GCTAC 
+
+Texto:	GCTTCTGCTACXGTAGCT
+Patrón:	            GCTAC 
+
+Si el carácter siguiente si existe en el patrón, se hace un desplazamiento hasta éste coincida con el último igual en el patrón
+
+Texto:	GCTTCTGCTACTGTAGCT
+Patrón:	      GCTAC    
+
+Texto:	GCTTCTGCTACTGTAGCT
+Patrón:	         GCTAC    
+
+
+
+
