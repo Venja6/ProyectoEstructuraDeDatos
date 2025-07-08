@@ -51,16 +51,16 @@ int main() {
     
     // Estrategias Habilitadas
     std::vector<bool> estrategias_habilitadas = {
-        true,   // Boyer-Moore (0)
+        false,   // Boyer-Moore (0)
         false,   // Knuth-Morris-Pratt (1)
         false,   // Rabin-Karp (2)
-        false,   // FM-Index (3)
+        true,   // FM-Index (3)
         true    // Suffix Array (4)
     };
 
     // --- Preparacion del archivo de resultados CSV ---
     std::ofstream archivo_resultados("resultados_experimento.csv");
-    archivo_resultados << "Estrategia,Num_Documentos,Tamano_Texto_Caracteres,Num_Patrones,Tiempo_Construccion_Promedio_ms,Tiempo_Busqueda_Promedio_ms,Memoria_Bytes\n";
+    archivo_resultados << "Estrategia,Num_Documentos,Tamano_Texto_Caracteres,Num_Patrones,Tiempo_Construccion_Promedio_ms,Tiempo_Busqueda_Promedio_ms\n";
    
     // --- 1. Carga de Datos ---
     std::cout << "Cargando " << DOCS_A_PROBAR << " documentos..." << std::endl;
@@ -109,7 +109,7 @@ int main() {
         double prom_busqueda = std::accumulate(tiempos_busqueda.begin(), tiempos_busqueda.end(), 0.0) / NUM_REPETICIONES;
 
         // Reporte a la consola
-        std::cout << "Tiempo de Construccion/Inicializacion Promedio: " 
+        std::cout << "Tiempo de Construccion Promedio: " 
                   << std::fixed << std::setprecision(2) << prom_construccion * 1000.0 << " ms" << std::endl;
         std::cout << "Tiempo de Busqueda Promedio (para " << patrones.size() << " patrones): " 
                   << std::fixed << std::setprecision(2) << prom_busqueda * 1000.0 << " ms" << std::endl;
